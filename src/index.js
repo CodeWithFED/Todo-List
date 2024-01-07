@@ -1,10 +1,14 @@
-let username;
 let input = document.getElementById("mytext");
 let btn = document.getElementById("mybtn");
+let list = document.getElementById("list");
 btn.onclick = () => {
-    username = input.value;
-    let newElement = document.createElement('li'); // Removed 'getElementById()' from this line
-    newElement.innerHTML = input.value;
-    console.log(username);
-    document.getElementById("list").appendChild(newElement); // Assuming you have a ul or ol with id "mylist" to append the new li
+    let newElement = document.createElement('li');
+    newElement.innerHTML = `<span>${input.value}</span>` + ` <button type="button" class="rmbtn">Remove</button>`;
+    list.appendChild(newElement);
+
+    // Add event listener for the remove button of the newly added list item
+    let removeBtn = newElement.querySelector('.rmbtn');
+    removeBtn.onclick = () => {
+        list.removeChild(newElement);
+    }
 }
